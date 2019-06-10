@@ -1,6 +1,6 @@
 FROM openjdk:jre-alpine
 LABEL maintainer="sean.wilbur@perficient.com"
-LABEL version="0.0.12"
+#LABEL version="0.0.x"
 
 RUN mkdir /jars
 
