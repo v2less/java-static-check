@@ -1,17 +1,15 @@
 # Java Preflight Analysis
 
-Helper docker image for use in pipeline builds.
+Helper docker image for use in pipeline builds, based on Alpine and OpenJDK.
 
 Tools:
  * Checkstyle
- *
 
 ## Usage
 
-
 Checkstyle example, from within your source directory:
 
-    docker run --rm -it -w /work -v $(pwd):/work sgwilbur/java-preflight-analysis:0.0.12 checkstyle -c /sun_checks.xml src/main/java/*
+    docker run --rm -it -w /work -v $(pwd):/work sgwilbur/java-preflight-checks:latest checkstyle -c /sun_checks.xml src/main/java/*
 
     Starting audit...
     [ERROR] /work/src/main/java/com/mycompany/app/App.java:1: Missing package-info.java file. [JavadocPackage]
@@ -28,9 +26,10 @@ Checkstyle example, from within your source directory:
     Audit done.
     Checkstyle ends with 11 errors.
 
-    # second iteration
-    docker run -it -w /work -v $(pwd):/work 576 checkstyle.sh -c /sun_checks.xml src/main/java
 
 
 
-##
+## Reference
+
+ * [Checkstyle](http://checkstyle.sourceforge.net/)
+ * [Checkstyle Releases](https://github.com/checkstyle/checkstyle/releases/)
