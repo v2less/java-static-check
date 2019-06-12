@@ -18,24 +18,6 @@ $(WORK_DIR): $(TARGET_DIR)
 $(TARGET_DIR):
 		mkdir -p $(TARGET_DIR)
 
-## Checkstyle Targets
-$(TARGET_DIR)/checkstyle.jar: $(WORK_DIR)
-		test -f $@ || wget -O $(TARGET_DIR)/checkstyle.jar $(CHECKSTYLE_RELEASE_URL)
-
-checkstyle: $(TARGET_DIR)/checkstyle.jar
-
-## PMD targets
-$(WORK_DIR)/$(PMD_FILENAME): $(WORK_DIR)
-		test -f $@ || wget -O $(WORK_DIR)/$(PMD_FILENAME) $(PMD_RELEASE_URL)
-
-$(TARGET_DIR)/pmd: $(WORK_DIR)/$(PMD_FILENAME)
-		cd $(TARGET_DIR) && unzip ../$(PMD_FILENAME) && mv pmd-bin-* pmd
-
-pmd: $(TARGET_DIR)/pmd
-
-## Helper target to consolidate
-deps: checkstyle pmd
-
 ## Build
 build: Dockerfile deps
 		docker build -t $(NS)/$(IMAGE_NAME):$(VERSION) -f Dockerfile --build-arg TARGET_DIR=$(TARGET_DIR) .
