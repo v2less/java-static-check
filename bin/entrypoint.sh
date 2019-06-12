@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function shutdown {
   kill -s SIGTERM $NODE_PID

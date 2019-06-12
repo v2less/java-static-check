@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/bash
 
-/bin/sh /usr/local/lib/pmd/bin/run.sh pmd "$@"
+/usr/local/lib/pmd/bin/run.sh pmd "$@"

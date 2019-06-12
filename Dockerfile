@@ -8,7 +8,7 @@ ENV CHECKSTYLE_VERSION 8.21
 ENV PMD_VERSION 6.15.0
 
 # Install curl
-RUN apk add curl
+RUN apk add bash curl
 
 # Install checkstyle
 RUN curl -L -o ${INSTALL_DIR}/checkstyle.jar https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${CHECKSTYLE_VERSION}/checkstyle-${CHECKSTYLE_VERSION}-all.jar
