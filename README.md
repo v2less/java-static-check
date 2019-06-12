@@ -4,8 +4,9 @@ Helper docker image for use in pipeline builds, based on Alpine and OpenJDK.
 
 Tools:
  * Checkstyle
+ * PMD
 
-## Usage
+## Usage Checkstyle
 
 Checkstyle example, from within your source directory:
 
@@ -26,7 +27,23 @@ Checkstyle example, from within your source directory:
     Audit done.
     Checkstyle ends with 11 errors.
 
+## Usage PMD
 
+Using PMD from within your
+
+    docker run --rm -it -w /work -v $(pwd):/work sgwilbur/java-preflight-checks:latest pmd -d src/main/java -l java -f xml -rulesets java-quickstart
+    WARNING: This analysis could be faster, please consider using Incremental Analysis: https://pmd.github.io/pmd-6.15.0/pmd_userdocs_incremental_analysis.html
+    <?xml version="1.0" encoding="UTF-8"?>
+    <pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
+        version="6.15.0" timestamp="2019-06-12T13:31:08.740">
+    <file name="/work/src/main/java/com/mycompany/app/App.java">
+    <violation beginline="8" endline="13" begincolumn="1" endcolumn="1" rule="UseUtilityClass" ruleset="Design" package="com.mycompany.app" class="App" externalInfoUrl="https://pmd.github.io/pmd/pmd_rules_java_design.html#useutilityclass" priority="3">
+    All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+    </violation>
+    </file>
+    </pmd>
 
 
 ## Reference

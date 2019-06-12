@@ -1,16 +1,15 @@
 FROM openjdk:jre-alpine
-LABEL maintainer="sean.wilbur@perficient.com"
-#LABEL version="0.0.x"
+LABEL maintainer="sgwilbur@gmail.com"
 
-RUN mkdir /jars
+ARG TARGET_DIR=./target/opt
 
-# Copy Jars
-COPY ./jars/checkstyle-8.21-all.jar /jars/checkstyle.jar
+#RUN mkdir -p /opt/checkstyle/
+
+# Copy target components
+COPY ${TARGET_DIR}/ /opt/
 
 # Copy scripts
-COPY ./bin/entrypoint.sh /entrypoint.sh
-COPY ./bin/checkstyle.sh /usr/local/bin/checkstyle
+COPY ./bin/ /usr/local/bin/
+RUN chmod +x /usr/local/bin/*
 
-RUN chmod +x /entrypoint.sh /usr/local/bin/checkstyle
-
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
