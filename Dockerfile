@@ -1,12 +1,12 @@
 FROM openjdk:jre-alpine
 LABEL maintainer="sgwilbur@gmail.com"
 
-ARG TARGET_DIR=./target/opt
+ARG TARGET_SRC_DIR
 
-#RUN mkdir -p /opt/checkstyle/
+ENV INSTALL_DIR /usr/local/lib
 
 # Copy target components
-COPY ${TARGET_DIR}/ /opt/
+COPY ${TARGET_DIR}/ ${INSTALL_DIR}
 
 # Copy scripts
 COPY ./bin/ /usr/local/bin/

@@ -1,4 +1,6 @@
-NS=sgwilbur
+
+
+TARGET_INSTALL_PATH=/usr/local/lib
 
 CHECKSTYLE_RELEASE_URL=https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.21/checkstyle-8.21-all.jar
 CHECKSTYLE_FILENAME=checkstyle-8.21-all.jar
