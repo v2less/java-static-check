@@ -19,6 +19,35 @@ This will spin up the image run your command in a new container and remove the c
 
  Tools are added to the docker container in the `/opt` directory with a helper wrapper shell script that should be copied to `/usr/local/bin`
 
+## Usage in Jenkins Declaritive Pipeline
+
+Show how these scans can be part of a Jenkinsfile.
+
+    // Requires docker label to be setup for where agent-docker definitions
+    // should be running
+    pipeline {
+      agent none
+      stages {
+        stage( 'Java preflight check - Checkstyle'){
+          agent {
+            docker { image 'sgwilbur/java-preflight-checks:0.1.18'}
+          }
+          steps {
+            sh 'checkstyle -c /sun_checks.xml src/main/java/*'
+          }
+        }
+        stage( 'Java preflight check - PMD'){
+          agent {
+            docker { image 'sgwilbur/java-preflight-checks:0.1.18'}
+          }
+          steps {
+            sh 'pmd -d src/main/java -l java -f xml -rulesets java-quickstart'
+          }
+        }
+      }
+    }
+
+
 ## Usage Checkstyle
 
 Checkstyle example, from within your source directory:
