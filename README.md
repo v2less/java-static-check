@@ -23,9 +23,10 @@ This will spin up the image run your command in a new container and remove the c
 
 Show how these scans can be part of a Jenkinsfile.
 
-    // Requires docker label to be setup for where agent-docker definitions
-    // should be running
+
     pipeline {
+      // Requires docker label to be setup for where agent-docker
+      // definitions should be running to use none below
       agent none
       stages {
         stage( 'Java preflight check - Checkstyle'){
