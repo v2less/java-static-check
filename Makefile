@@ -1,5 +1,3 @@
-include make_env
-
 NS ?= sgwilbur
 IMAGE_NAME ?= java-preflight-checks
 VERSION ?= latest
@@ -8,7 +6,7 @@ CONTAINER_INSTANCE ?= default
 WORK_DIR ?= target
 TARGET_DIR ?= $(WORK_DIR)/opt
 
-.PHONY: build shell clean deps
+.PHONY: build shell clean
 
 # Utility targets
 clean:

@@ -1,9 +1,0 @@
-
-
-TARGET_INSTALL_PATH=/usr/local/lib
-
-CHECKSTYLE_RELEASE_URL=https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.21/checkstyle-8.21-all.jar
-CHECKSTYLE_FILENAME=checkstyle-8.21-all.jar
-
-PMD_RELEASE_URL=https://github.com/pmd/pmd/releases/download/pmd_releases%2F6.15.0/pmd-bin-6.15.0.zip
-PMD_FILENAME=pmd-bin-6.15.0.zip
