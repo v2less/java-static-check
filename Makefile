@@ -17,7 +17,7 @@ $(TARGET_DIR):
 		mkdir -p $(TARGET_DIR)
 
 ## Build
-build: Dockerfile deps
+build: Dockerfile
 		docker build -t $(NS)/$(IMAGE_NAME):$(VERSION) -f Dockerfile --build-arg TARGET_DIR=$(TARGET_DIR) .
 
 ## Test in shell with latest build

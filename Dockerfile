@@ -4,7 +4,7 @@ LABEL maintainer="sgwilbur@gmail.com"
 ARG TARGET_SRC_DIR
 
 ENV INSTALL_DIR /usr/local/lib
-ENV CHECKSTYLE_VERSION 8.21
+ENV CHECKSTYLE_VERSION 10.12.0 
 ENV PMD_VERSION 6.15.0
 
 # Install curl
