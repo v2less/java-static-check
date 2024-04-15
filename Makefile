@@ -1,5 +1,5 @@
-NS ?= sgwilbur
-IMAGE_NAME ?= java-preflight-checks
+NS ?= freelxs
+IMAGE_NAME ?= java-static-check
 VERSION ?= latest
 CONTAINER_NAME ?= $(IMAGE_NAME)
 CONTAINER_INSTANCE ?= default

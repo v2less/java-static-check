@@ -13,7 +13,7 @@ Tools:
 
 The docker image is setup to mount the local directory and set working directory in the way that tools like [Jenkins](https://jenkins.io/) will use ephemeral docker images during execution.
 
-    docker run --rm -it -w /work -v $(pwd):/work sgwilbur/java-preflight-checks <command> <command arguments>
+    docker run --rm -it -w /work -v $(pwd):/work freelxs/java-static-check <command> <command arguments>
 
 This will spin up the image run your command in a new container and remove the container after execution to not leave.
 
@@ -31,18 +31,18 @@ Show how these scans can be part of a Jenkinsfile.
       stages {
         stage( 'Java preflight check - Checkstyle'){
           agent {
-            docker { image 'sgwilbur/java-preflight-checks:0.1.18'}
+            docker { image 'freelxs/java-static-check:latest'}
           }
           steps {
-            sh 'checkstyle -c /sun_checks.xml src/main/java/*'
+            sh 'checkstyle -c /opt/rules/sun_checks.xml src/main/java/*'
           }
         }
         stage( 'Java preflight check - PMD'){
           agent {
-            docker { image 'sgwilbur/java-preflight-checks:0.1.18'}
+            docker { image 'freelxs/java-static-check:latest'}
           }
           steps {
-            sh 'pmd -d src/main/java -l java -f xml -rulesets java-quickstart'
+            sh 'pmd -d src/main/java -l java -f xml -rulesets /opt/rules/java-quickstart.xml'
           }
         }
       }
@@ -53,7 +53,7 @@ Show how these scans can be part of a Jenkinsfile.
 
 Checkstyle example, from within your source directory:
 
-    $ docker run --rm -it -w /work -v $(pwd):/work sgwilbur/java-preflight-checks:latest checkstyle -c /sun_checks.xml src/main/java/*
+    $ docker run --rm -it -w /work -v $(pwd):/work freelxs/java-static-check:latest checkstyle -c /opt/rules/google_checks.xml -f xml -o checksytle-report.xml src/main/java/*
 
     Starting audit...
     [ERROR] /work/src/main/java/com/mycompany/app/App.java:1: Missing package-info.java file. [JavadocPackage]
@@ -74,8 +74,8 @@ Checkstyle example, from within your source directory:
 
 Using PMD from within your source directory.
 
-    $ docker run --rm -it -w /work -v $(pwd):/work sgwilbur/java-preflight-checks:latest pmd -d src/main/java -l java -f xml -rulesets java-quickstart
-    WARNING: This analysis could be faster, please consider using Incremental Analysis: https://pmd.github.io/pmd-6.15.0/pmd_userdocs_incremental_analysis.html
+    $ docker run --rm -it -w /work -v $(pwd):/work freelxs/java-static-check:latest pmd -d src/main/java -l java -f xml -r pmd-report.xml -rulesets /opt/rules/java-quickstart.xml
+    WARNING: This analysis could be faster, please consider using Incremental Analysis: https://pmd.github.io/pmd-6.55.0/pmd_userdocs_incremental_analysis.html
     <?xml version="1.0" encoding="UTF-8"?>
     <pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
