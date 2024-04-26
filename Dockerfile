@@ -8,6 +8,7 @@ ENV CHECKSTYLE_VERSION 10.15.0
 ENV PMD_VERSION 6.55.0
 ENV SHELLCHECK_VERSION v0.10.0
 ENV SHFMT_VERSION v3.8.0
+ENV KTLINT_VERSION 1.2.1
 
 # Install curl
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
@@ -33,6 +34,11 @@ RUN cd ${INSTALL_DIR} && \
 RUN cd ${INSTALL_DIR} && \
   curl -L https://mirror.ghproxy.com/https://github.com/mvdan/sh/releases/download/${SHFMT_VERSION}/shfmt_${SHFMT_VERSION}_linux_amd64 --output shfmt && \
   chmod +x shfmt
+# Install ktlint
+RUN cd ${INSTALL_DIR} && \
+  curl -L https://mirror.ghproxy.com/https://github.com/pinterest/ktlint/releases/download/${KTLINT_VERSION}/ktlint --output ktlint && \
+  chmod +x ktlint
+
 RUN pip3 install pip --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip3 install --upgrade --ignore-installed black pylint pylint-json2checkstyle -i https://pypi.tuna.tsinghua.edu.cn/simple
 # Copy scripts
