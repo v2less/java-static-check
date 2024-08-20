@@ -1,4 +1,4 @@
 #!/bin/bash
 
 #echo "checkstyle >> received [$@]"
-/usr/local/lib/ktlint --reporter=checkstyle,output=ktlint-checkstyle-report.xml "$@"
+/usr/local/lib/ktlint --editorconfig=/opt/rules/ktlintconfig --reporter=checkstyle,output=ktlint-checkstyle-report.xml "$@"

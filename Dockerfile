@@ -4,11 +4,11 @@ LABEL maintainer="freelxs@gmail.com"
 ARG TARGET_SRC_DIR
 
 ENV INSTALL_DIR /usr/local/lib
-ENV CHECKSTYLE_VERSION 10.15.0 
+ENV CHECKSTYLE_VERSION 10.17.0 
 ENV PMD_VERSION 6.55.0
 ENV SHELLCHECK_VERSION v0.10.0
-ENV SHFMT_VERSION v3.8.0
-ENV KTLINT_VERSION 1.2.1
+ENV SHFMT_VERSION v3.9.0
+ENV KTLINT_VERSION 1.3.1
 
 # Install curl
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
